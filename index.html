@@ -150,17 +150,22 @@ document.addEventListener("paste",e=>{
 });
 
 let file;
-drop.onclick=()=>fileInput.click();
-drop.ondragover=e=>{e.preventDefault();drop.classList.add("drag")}
-drop.ondragleave=()=>drop.classList.remove("drag")
-drop.ondrop=e=>{
- e.preventDefault();drop.classList.remove("drag");
- file=e.dataTransfer.files[0];
- drop.innerText=file.name;
+const fileInput = document.getElementById("file");
+
+drop.onclick = () => fileInput.click();
+
+drop.ondragover = e => { e.preventDefault(); drop.classList.add("drag") }
+drop.ondragleave = () => drop.classList.remove("drag")
+drop.ondrop = e => {
+  e.preventDefault();
+  drop.classList.remove("drag");
+  file = e.dataTransfer.files[0];
+  drop.innerText = file.name;
 }
-fileInput.onchange=e=>{
- file=e.target.files[0];
- drop.innerText=file.name;
+
+fileInput.onchange = e => {
+  file = e.target.files[0];
+  drop.innerText = file.name;
 }
 
 async function upload(){
